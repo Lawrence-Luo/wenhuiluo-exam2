@@ -26,19 +26,23 @@ export class StudentListComponent implements OnInit {
   };
   searchResult:Array<any>;
   students:Array<any>=[];
+  finalStudent:Array<any>=[];
+  orderStudents:Array<any>;
 
   getUserClick(ev){
     this.selectStudent = ev
     console.log(ev);
   }
- 
-  sortByAsccending(type="id") {
+  
+   sortByAsccending(type="name") {
     // 参考MDN Array操作的API文档 Array相关方法方法
     this.students.sort((a,b)=>{
       return a[type] - b[type];
     });
+
   }
-  sortByDesccending(type="id") {
+
+  sortByDesccending(type="name") {
     // 参考MDN Array操作的API文档 Array相关方法
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
     this.students.sort((a,b)=>{
@@ -55,11 +59,12 @@ export class StudentListComponent implements OnInit {
   }
   constructor(meta: Meta, title: Title,private http:Http, private studentServ:StudentService) {
 
-    let query = new Parse.Query("Student",http)
+    let query = new Parse.Query("BasicInfo",http)
     query.find().subscribe(data=>{
       console.log(data)
-      this.students = data
+      this.students = data  
     })
+    
 
     // this.studentServ.getStudents().subscribe(data=>{
     //   console.log(data)

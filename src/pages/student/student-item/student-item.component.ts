@@ -22,6 +22,10 @@ export class StudentItemComponent implements OnInit {
     }else{
       this.student.check = true
     }
+
+    console.log(this.student);
+
+    this.studentServ.saveStudent(this.student);
   }
   isChecked(){
     if(this.student.check&&this.student.check==true){

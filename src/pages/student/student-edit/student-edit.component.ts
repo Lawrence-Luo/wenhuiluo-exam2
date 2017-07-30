@@ -31,12 +31,12 @@ export class StudentEditComponent implements OnInit,OnDestroy {
     this.student.exam3 = Number(this.student.exam3)
     this.studentServ.saveStudent(this.student).subscribe(data=>{
       console.log(data)
-      this.location.back();
+      this.location.go("/student");  
     })
-    this.studentServ.saveStudent(this.student).subscribe(data=>{
-      console.log(data)
-      this.location.back();        
-    })
+    // this.studentServ.saveStudent(this.student).subscribe(data=>{
+    //   console.log(data)
+    //   this.location.back();        
+    // })
   }
   ngOnInit() {
         this.route.params.subscribe(params=>{
